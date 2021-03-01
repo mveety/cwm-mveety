@@ -1,0 +1,9 @@
+*.swp
+*.o
+a.out
+.#*
+.*.swp
+.*.*.swp
+cwm
+y.tab.c
+
