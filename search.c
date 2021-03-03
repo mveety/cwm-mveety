@@ -244,15 +244,25 @@ search_print_client(struct menu *mi, int listing)
 {
 	struct client_ctx	*cc = (struct client_ctx *)mi->ctx;
 	char			 flag = ' ';
+	char *tmpname;
 
 	if (cc->flags & CLIENT_ACTIVE)
 		flag = '!';
 	else if (cc->flags & CLIENT_HIDDEN)
 		flag = '&';
 
+	// this isn't the best way to do this
+	// it is easy though.
+	if(Conf.maxtitle == 0)
+		tmpname = cc->name;
+	else
+		tmpname = strndup(cc->name, Conf.maxtitle);
+
 	(void)snprintf(mi->print, sizeof(mi->print), "(%d) %c[%s] %s",
 	    (cc->gc) ? cc->gc->num : 0, flag,
-	    (cc->label) ? cc->label : "", cc->name);
+	    (cc->label) ? cc->label : "", tmpname);
+	if(Conf.maxtitle != 0)
+		free(tmpname);
 }
 
 void

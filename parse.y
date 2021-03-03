@@ -74,7 +74,7 @@ typedef struct {
 %token	FONTNAME STICKY GAP
 %token	AUTOGROUP COMMAND IGNORE WM
 %token	YES NO BORDERWIDTH MOVEAMOUNT HTILE VTILE
-%token	COLOR SNAPDIST
+%token	COLOR SNAPDIST MAXTITLE
 %token	ACTIVEBORDER INACTIVEBORDER URGENCYBORDER
 %token	GROUPBORDER UNGROUPBORDER
 %token	MENUBG MENUFG
@@ -151,6 +151,13 @@ main		: FONTNAME STRING		{
 				YYERROR;
 			}
 			conf->snapdist = $2;
+		}
+		| MAXTITLE NUMBER {
+			if ($2 < 0 || $2 > INT_MAX) {
+				yyerror("invalid maxtitle");
+				YYERROR;
+			}
+			conf->maxtitle = $2;
 		}
 		| COMMAND STRING string		{
 			if (strlen($3) >= PATH_MAX) {
@@ -335,6 +342,7 @@ lookup(char *s)
 		{ "htile",		HTILE},
 		{ "ignore",		IGNORE},
 		{ "inactiveborder",	INACTIVEBORDER},
+		{ "maxtitle",	MAXTITLE},
 		{ "menubg",		MENUBG},
 		{ "menufg",		MENUFG},
 		{ "moveamount",		MOVEAMOUNT},

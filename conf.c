@@ -286,6 +286,7 @@ conf_init(struct conf *c)
 	c->snapdist = 0;
 	c->ngroups = 0;
 	c->nameqlen = 5;
+	c->maxtitle = 0;
 
 	TAILQ_INIT(&c->ignoreq);
 	TAILQ_INIT(&c->autogroupq);

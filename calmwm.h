@@ -314,6 +314,7 @@ struct conf {
 	int			 snapdist;
 	int			 htile;
 	int			 vtile;
+	int			 maxtitle;
 	struct gap		 gap;
 	char			*color[CWM_COLOR_NITEMS];
 	char			*font;
