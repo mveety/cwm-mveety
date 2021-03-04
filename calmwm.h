@@ -315,6 +315,7 @@ struct conf {
 	int			 htile;
 	int			 vtile;
 	int			 maxtitle;
+	int			onlyshowlabel;
 	struct gap		 gap;
 	char			*color[CWM_COLOR_NITEMS];
 	char			*font;

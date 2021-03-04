@@ -11,9 +11,15 @@ sticky yes
 command term 'xterm'
 command lock 'xscreensaver-command -lock'
 snapdist 5
-# maxtitle is one of my additions that limits how many chars to
-# display in the window menu. It doesn't affect searching windows
+
+### cwm-mveety additions
+# maxtitle: limits how many chars to display in the window menu. It
+# doesn't affect searching windows
 maxtitle 20
+# labelsonly: if set to yes then cwm will only display the label of the
+# window in the window menu if it exists.
+labelsonly yes
+
 
 # Pretty colours
 #borderwidth 2

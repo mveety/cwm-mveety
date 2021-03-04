@@ -258,9 +258,16 @@ search_print_client(struct menu *mi, int listing)
 	else
 		tmpname = strndup(cc->name, Conf.maxtitle);
 
-	(void)snprintf(mi->print, sizeof(mi->print), "(%d) %c[%s] %s",
-	    (cc->gc) ? cc->gc->num : 0, flag,
-	    (cc->label) ? cc->label : "", tmpname);
+	if(Conf.onlyshowlabel)
+		(void)snprintf(mi->print, sizeof(mi->print), "(%d) %c %s",
+			(cc->gc) ? cc->gc->num : 0,
+			flag,
+			(cc->label) ? cc->label : tmpname);
+	else
+		(void)snprintf(mi->print, sizeof(mi->print), "(%d) %c[%s] %s",
+		    (cc->gc) ? cc->gc->num : 0, flag,
+		    (cc->label) ? cc->label : "", tmpname);
+
 	if(Conf.maxtitle != 0)
 		free(tmpname);
 }

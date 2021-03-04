@@ -287,6 +287,7 @@ conf_init(struct conf *c)
 	c->ngroups = 0;
 	c->nameqlen = 5;
 	c->maxtitle = 0;
+	c->onlyshowlabel = 0;
 
 	TAILQ_INIT(&c->ignoreq);
 	TAILQ_INIT(&c->autogroupq);

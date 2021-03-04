@@ -74,7 +74,7 @@ typedef struct {
 %token	FONTNAME STICKY GAP
 %token	AUTOGROUP COMMAND IGNORE WM
 %token	YES NO BORDERWIDTH MOVEAMOUNT HTILE VTILE
-%token	COLOR SNAPDIST MAXTITLE
+%token	COLOR SNAPDIST MAXTITLE LABELSONLY
 %token	ACTIVEBORDER INACTIVEBORDER URGENCYBORDER
 %token	GROUPBORDER UNGROUPBORDER
 %token	MENUBG MENUFG
@@ -116,6 +116,9 @@ main		: FONTNAME STRING		{
 		}
 		| STICKY yesno {
 			conf->stickygroups = $2;
+		}
+		| LABELSONLY yesno {
+			conf->onlyshowlabel = $2;
 		}
 		| BORDERWIDTH NUMBER {
 			if ($2 < 0 || $2 > INT_MAX) {
@@ -342,6 +345,7 @@ lookup(char *s)
 		{ "htile",		HTILE},
 		{ "ignore",		IGNORE},
 		{ "inactiveborder",	INACTIVEBORDER},
+		{ "labelsonly", LABELSONLY},
 		{ "maxtitle",	MAXTITLE},
 		{ "menubg",		MENUBG},
 		{ "menufg",		MENUFG},
